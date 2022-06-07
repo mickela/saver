@@ -1,20 +1,34 @@
 import React from 'react';
 import { Dimensions, View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 const { width } = Dimensions.get("screen")
+import * as Sharing from 'expo-sharing'; 
 
 
 const ImageCard = (props) =>{
     const { image } = props;
+
+
+    const openShareDialogAsync = async (uri) =>{
+        if (Platform.OS === 'web') {
+            alert(`Uh oh, sharing isn't available on your platform`);
+            return;
+        }
+
+        await Sharing.shareAsync(uri);      
+    }
+
+
     return(
         <TouchableOpacity onPress={()=> alert('View '+image.filename)} style={styles.imageCard}>
             <Image source={{uri: image.uri }} style={styles.image} />
             <View style={styles.saveButtonView}>
+                <TouchableOpacity onPress={()=> openShareDialogAsync(image.uri)} style={styles.saveBtn}>
+                    <Text>Share 🚀</Text>
+                </TouchableOpacity>
                 <TouchableOpacity  style={styles.saveBtn}>
                     <Text>Save ⚡</Text>
                 </TouchableOpacity>
             </View>
-
-            {/* <Text>{image.uri}</Text> */}
         </TouchableOpacity>
     )
 }
@@ -39,11 +53,12 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     saveButtonView: {
-        paddingRight: 10
+        paddingRight: 15
     },
     saveBtn: {
         backgroundColor: 'orange',
-        padding: 10,
-        borderRadius: 50
+        padding: 7,
+        borderRadius: 50,
+        marginVertical: 5
     }
 })
