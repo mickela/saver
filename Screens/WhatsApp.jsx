@@ -1,15 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Image, ScrollView } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Alert, Image, ScrollView } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
+import * as StorageAccessFramework from 'expo-file-system';
 import { useState, useEffect } from 'react';
+
+const { width } = Dimensions.get("screen")
 
 
 const ImageRenderer = (props) =>{
     const { media } = props;
     
-    return media.assets.map(x => 
+    return media.assets.map((x,i) => 
         x.mediaType !== 'video' && (
-            <Image source={{uri: x.uri }} style={{ width: '50%', height: 159 }} />
+            <View key={i} style={{ width: '100%', height: 189 }}>
+                <Image source={{uri: x.uri }} style={{ width: '100%', height: '90%' }} />
+                <Text>{x.uri}</Text>
+            </View>
         )                
     )
 }
@@ -18,11 +24,19 @@ export default function WhatsApp() {
     const [ mediaFiles, setMediaFiles ] = useState({ assets: [] });
 
     const getMediaFiles = async () =>{
+        const album = await MediaLibrary.getAlbumAsync("Pictures");
+
+        // console.log(album);
+
         const media = await MediaLibrary.getAssetsAsync({
-            mediaType: [ 'photo', 'video' ]
+            mediaType: [ 'photo', 'video' ],
+            album
         });
 
         setMediaFiles(media);
+
+        // const saf = await StorageAccessFramework.readDirectoryAsync("file:///storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images/Private");
+        // console.log(saf)
     }
 
     const getPermissions = async () =>{
@@ -76,9 +90,9 @@ export default function WhatsApp() {
     return (
         <View style={styles.container}>
 
-            <View style={{ flex: 1, flexDirection: 'row', marginTop: 30, width: 406, flexWrap: 'wrap' }}>
+            <ScrollView style={{ flex: 1, flexDirection: 'row', marginTop: 30, width: width, flexWrap: 'wrap' }}>
                 <ImageRenderer media={mediaFiles} />
-            </View>
+            </ScrollView>
 
             <StatusBar style="auto" />
         </View>
