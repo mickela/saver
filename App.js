@@ -24,7 +24,7 @@ export default function App() {
   };
 
   const TabBarIcon = ({focused, img}) => {
-    let image = require(`./assets/whatsapp2.png`) || require(`./assets/whatsapp.png`);
+    let image = img == 'business' ? require(`./assets/whatsapp-business.png`) : require(`./assets/whatsapp.png`);
     
     return (
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -74,8 +74,10 @@ export default function App() {
       }}
     >
         <Tab.Screen name="WhatsApp" component={WhatsApp} options={{
-          tabBarIcon: ({focused}) => <TabBarIcon focused={focused} img="./assets/whatsapp.png" /> }} />
-        <Tab.Screen name="WhatsAppBusiness" component={WhatsAppBusiness} />
+          tabBarIcon: ({focused}) => <TabBarIcon focused={focused} img="personal" /> }} />
+
+        <Tab.Screen name="WhatsAppBusiness" component={WhatsAppBusiness} options={{
+          tabBarIcon: ({focused}) => <TabBarIcon focused={focused} img="business" /> }} />
       </Tab.Navigator>
       <StatusBar style="light" />
     </NavigationContainer>
