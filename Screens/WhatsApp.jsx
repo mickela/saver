@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Alert, Image, ScrollView } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
 import * as StorageAccessFramework from 'expo-file-system';
@@ -92,7 +91,7 @@ export default function WhatsApp() {
                 <ImageRenderer media={mediaFiles} />
             </ScrollView>
 
-            <StatusBar style="light" />
+            
         </View>
     );
 }

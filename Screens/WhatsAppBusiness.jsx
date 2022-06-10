@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Alert, Image, ScrollView } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
 import * as StorageAccessFramework from 'expo-file-system';
@@ -91,8 +90,6 @@ export default function WhatsAppBusiness() {
             <ScrollView style={{ flex: 1, flexDirection: 'row', width: width, flexWrap: 'wrap' }}>
                 <ImageRenderer media={mediaFiles} />
             </ScrollView>
-
-            <StatusBar style="light" />
         </View>
     );
 }
