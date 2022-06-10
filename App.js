@@ -22,9 +22,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={'Tabs'}>
         <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }}/>
-        <Stack.Screen name="Image" component={ImageView} options={{
+        <Stack.Screen name="ImageView" component={ImageView} options={{
           title: "Image View",
-          ...headerStyles
+          headerTintColor: "#fff",
+          headerTransparent: true,
+          headerTitle: ""
         }} />
       </Stack.Navigator>
       <StatusBar style="light" />

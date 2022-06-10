@@ -8,16 +8,16 @@ const { width } = Dimensions.get("screen")
 
 
 const ImageRenderer = (props) =>{
-    const { media } = props;
+    const { media, navigation } = props;
     
     return media.assets.map((x,i) => 
         x.mediaType !== 'video' && (
-            <ImageCard key={i} image={x} />
+            <ImageCard key={i} image={x} navigation={navigation} />
         )                
     )
 }
 
-export default function WhatsApp() {
+export default function WhatsApp({navigation}) {
     const [ mediaFiles, setMediaFiles ] = useState({ assets: [] });
 
     const getMediaFiles = async () =>{
@@ -88,7 +88,7 @@ export default function WhatsApp() {
         <View style={styles.container}>
 
             <ScrollView style={{ flex: 1, flexDirection: 'row', width: width, flexWrap: 'wrap' }}>
-                <ImageRenderer media={mediaFiles} />
+                <ImageRenderer media={mediaFiles} navigation={navigation} />
             </ScrollView>
 
             

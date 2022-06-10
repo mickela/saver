@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 
 export const Tabs = () =>{
     const TabBarIcon = ({focused, img}) => {
-        let image = img == 'business' ? require(`./assets/whatsapp-business.png`) : require(`./assets/whatsapp.png`);
+        let image = img == 'business' ? require(`./assets/whatsapp-business.png`) : require(`./assets/whatsapp2.png`);
         
         return (
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>

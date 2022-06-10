@@ -12,7 +12,7 @@ const { width } = Dimensions.get("screen");
 import * as Sharing from "expo-sharing";
 
 const ImageCard = (props) => {
-  const { image } = props;
+  const { image, navigation } = props;
 
   const openShareDialogAsync = async (uri) => {
     if (Platform.OS === "web") {
@@ -25,7 +25,7 @@ const ImageCard = (props) => {
 
   return (
     <TouchableOpacity
-      onPress={() => alert("View " + image.filename)}
+      onPress={() => navigation.navigate("ImageView", { uri: image.uri })}
       style={styles.imageCard}
     >
       <Image source={{ uri: image.uri }} style={styles.image} />
