@@ -29,19 +29,19 @@ export const Tabs = () =>{
         <Tab.Navigator
             screenOptions={{
                 tabBarShowLabel: false,
-                style: {
+                tabBarStyle: {
+                    backgroundColor: "#000",
                     position: "absolute",
                     bottom: 0,
                     left: 0,
                     right: 0,
                     elevation: 0,
-                    backgroundColor: "red",
-                    borderTopColor: "transparent",
-                    height: 100,
+                    borderTopColor: "green",
+                    borderTopLeftRadius: 10,
+                    borderTopRightRadius: 10,
+                    marginHorizontal: 3
+                    // marginBottom: 10,
                 },
-                // tabBarBackground: {
-
-                // },
                 headerStyle: {
                     backgroundColor: "#f4511e",
                 },
