@@ -1,5 +1,7 @@
 # WhatApp status saver 📱
 
+👨‍🔧 Work in progress 🚧
+
 ### Clone repo
     
     git clone https://github.com/mickela/wa-status-saver.git
